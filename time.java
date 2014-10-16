@@ -47,28 +47,23 @@ public class time
 	static final GpioPinDigitalOutput g = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_11, "MyLED", PinState.HIGH);
 	static final GpioPinDigitalOutput h = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_12, "MyLED", PinState.HIGH);
 	
+	//Add a pin to listen to a button click
+	static final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_DOWN);
+	
 	//Date Declarations
 	////DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 	static final DateFormat hour = new SimpleDateFormat("HH");
 	static final DateFormat min = new SimpleDateFormat("mm");
 	static final DateFormat day = new SimpleDateFormat("dd");
 	static final DateFormat mon = new SimpleDateFormat("MM");
-    static final Date date = new Date();
-	
-	//Add a pin to listen to a button click
-	static final GpioPinDigitalInput myButton = gpio.provisionDigitalInputPin(RaspiPin.GPIO_00, PinPullResistance.PULL_DOWN);
+    	static final Date date = new Date();
 
 	public static void main(String args[]) throws InterruptedException
 	{			
 		Thread.sleep(1200);		 
-		shutdown();	
+		shutdown();
 		
-		
-
-
-		
-		
-		// create and register gpio pin listener
+	// create and register gpio pin listener
         myButton.addListener(new GpioPinListenerDigital() {
             @Override
             public void handleGpioPinDigitalStateChangeEvent(GpioPinDigitalStateChangeEvent event)  {
@@ -163,8 +158,6 @@ public class time
 		Thread.sleep(5);
 		cpin1.low();
 		}
-		
-		
 	}
 	
 	static void dt() throws InterruptedException
